@@ -1,0 +1,78 @@
+<style>
+  p{
+    padding: 0px 10px 0px 10px;
+  }
+</style>
+
+<%= render 'menu' %>
+
+<div class="container" style="padding-top: 25px">
+
+  <% if notice %>
+    <div class="alert alert-success">
+      <span class="glyphicon glyphicon-exclamation-sign"></span> <%=notice %>
+    </div>
+  <% end %>
+  
+  <div>
+    <%= link_to 'Edit', edit_project_path(@project) %>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6" style="min-height: 200px">
+      <h4 style="border: 1px solid; padding:5px">
+        Assigned Stories 
+        <% if @summary.assigned_stories.any? %>
+              <span style="float: right;"><%= @summary.assigned_stories_points %> - Points</span>
+        <% end %>
+      </h4>
+
+      <% if @summary.assigned_stories.any? %>
+        <% @summary.assigned_stories.each do |story| %>
+          <p><%= link_to story.title, project_story_path(@project, story) %> - Points: <%= story.points %> - Assigned to: <%= story.user.full_name %></p>
+        <% end %>
+      <% else %>
+        <p style="text-align: center; font-style: italic;">Nothing todo at the moment. It's all done!</p>
+      <% end %>
+    </div>
+
+    <div class="col-md-6" style="min-height: 200px">
+      <h4 style="border: 1px solid; padding:5px">Summary</h4>
+       <% if @summary.total_stories > 0 %>
+          <p>Total Stories: <%= @summary.total_stories %></p>
+          <p>Total Completed Stories: <%= @summary.total_complete %></p>
+          <p>Total Points: <%= @summary.total_points %></p>
+          <p>Total Assigned Stories: <%= @summary.assigned_stories&.size %></p>
+          <p>Total Unssigned Stories: <%= @summary.unassigned_stories&.size %></p>
+       <% else %>
+        <p style="text-align: center; font-style: italic;">Nothing going on. Better hit the backlog</p>
+      <% end %>
+   </div>
+
+    <div class="col-md-6" style="min-height: 200px">
+      <h4 style="border: 1px solid; padding:5px">
+        Unassigned Stories
+        <% if @summary.unassigned_stories.any? %>
+          <span style="float: right;"><%= @summary.unassigned_stories_points %> - Points</span>
+        <% end %>
+      </h4>
+
+      <% if @summary.unassigned_stories.any? %>
+        <% @summary.unassigned_stories.each do |story| %>
+          <p><%= story.title%> - Points: <%= story.points %> </p>
+        <% end %>
+      <% else %>
+        <p style="text-align: center; font-style: italic;">Everything is all tasked out</p>
+      <% end %>
+    </div>
+
+     <div class="col-md-6" style="min-height: 200px">
+      <h4 style="border: 1px solid; padding:5px">Incomplete Stories</h4>
+      <p style="text-align: center; font-style: italic;">All stories are complete!</p>
+    </div>
+
+  </div>
+
+</div> <!-- /container -->
+
+

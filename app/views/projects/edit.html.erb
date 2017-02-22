@@ -1,0 +1,36 @@
+<%= render 'menu' %>
+
+<div class="container" style="padding-top: 20px;">
+
+  <ol class="breadcrumb">
+    <li><%= link_to 'Project List', projects_path %></li>
+    <li><%= link_to @project.name, @project %></li>
+    <li class="active">Edit Project</li>
+  </ol>
+    
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title"><span class="glyphicon glyphicon-wrench"></span> Edit Project</h3>
+    </div>
+    
+    <div class="panel-body">
+
+      <% if notice %>
+        <div class="alert alert-success">
+          <span class="glyphicon glyphicon-exclamation-sign"></span> <%=notice %>
+        </div>
+      <% end %>
+
+      <% if @project.errors.any? %>
+        <ul class="alert alert-danger">
+          <% @project.errors.full_messages.each do |message| %>
+            <li> <span class="glyphicon glyphicon-exclamation-sign"></span><%= message %></li>
+          <% end %>
+        </ul>
+      <% end %>
+
+      <%= render 'form' %>
+
+    </div>
+  </div>
+</div>

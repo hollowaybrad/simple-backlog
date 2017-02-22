@@ -1,0 +1,52 @@
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li class="active"><%= link_to 'Home', projects_path%></li>    
+        <li><%= link_to 'Users', users_path%></li>
+        <li><%= link_to 'Labels', labels_path%></li>
+       <li><a href="#about">About</a></li>
+      </ul>
+    </div><!--/.navbar-collapse -->
+  </div>
+</div>
+
+<div class="container" style="padding-top: 20px;">   
+  <ol class="breadcrumb">
+      <li><%= link_to 'Home', projects_path %></li>
+      <li class="active">Project</li>
+  </ol>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title"><span class="glyphicon glyphicon-plus-sign"></span> New Project</h3>
+    </div>
+    
+    <div class="panel-body">
+      <% if notice %>
+        <div class="alert alert-success">
+          <span class="glyphicon glyphicon-exclamation-sign"></span> <%= notice %>
+        </div>
+      <% end %>
+
+    <% if @project.errors.any? %>
+       <ul class="alert alert-danger">
+        <% @project.errors.full_messages.each do |message| %>
+          <li> <span class="glyphicon glyphicon-exclamation-sign"></span><%= message %></li>
+        <% end %>
+       </ul>
+    <% end %>
+
+    <%= render 'form' %>
+    
+    </div>
+  </div>      
+</div>

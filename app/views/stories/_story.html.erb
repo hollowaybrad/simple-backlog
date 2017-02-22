@@ -1,0 +1,40 @@
+
+<tr>
+  <td>
+    <span class="badge" style="margin-right:5px;">ID<%= story.id %></span>
+    <span><%= story.title %></span> 
+    <!--  <span><input type="text" size="30" class="form-control"></span>-->
+  </td>
+  <td>
+    <span><%= story.points %></span>
+    <!--<span><input type="number" size="2" class="form-control"></span>-->
+  </td>
+  <td>
+    <span><%= story.user&.full_name %></span>
+    <!--<span >
+      <select ng-model="story.owner" ng-options="user.email for user in users" name="user" class="form-control"></select>
+    </span> -->  
+  </td>
+  <td>
+    <% story.labels&.each do |label| %>
+      <span class="badge"><%= label.title%></span>
+     <% end %>
+    <!--<span ng-show="editingl">
+      <select ng-model="story.labels" ng-options="label.title for label in labels" name="label" class="form-control" multiple></select>
+    </span> -->
+  </td>
+  <td>
+    <span>
+      <% if story.complete %>
+        Yes
+      <% else %>
+        No
+      <% end %>
+    </span>
+  </td>
+  <td style="text-align: center;">
+    <%= link_to "Edit", edit_project_story_path(@project, story) %> | <%= link_to "Delete", project_story_path(@project, story), method: :delete, data: { confirm: 'Are you sure?' } %> 
+    <!--<input type="button" class="btn btn-info btn-xs" value="Save"/>-->
+    </span>
+  </td>
+</tr>

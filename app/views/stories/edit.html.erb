@@ -1,0 +1,42 @@
+<%= render 'menu' %>
+
+<div class="container" style="padding-top: 20px;">
+
+  <ol class="breadcrumb">
+    <li><%= link_to 'Backlog', project_stories_path(@project) %></li>
+    <li><%= link_to @story.title, project_story_path(@project, @story) %></li>
+    <li class="active">Edit Story</li>
+  </ol>
+    
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title"><span class="glyphicon glyphicon-wrench"></span> Edit Story</h3>
+    </div>
+    
+    <div class="panel-body">
+
+      <% if notice %>
+        <div class="alert alert-success">
+          <span class="glyphicon glyphicon-exclamation-sign"></span> <%=notice %>
+        </div>
+      <% end %>
+
+       <% if alert %>
+        <div class="alert alert-danger">
+          <span class="glyphicon glyphicon-exclamation-sign"></span> <%= alert %>
+        </div>
+      <% end %>
+
+      <% if @story.errors.any? %>
+        <ul class="alert alert-danger">
+          <% @story.errors.full_messages.each do |message| %>
+            <li> <span class="glyphicon glyphicon-exclamation-sign"></span><%= message %></li>
+          <% end %>
+        </ul>
+      <% end %>
+
+      <%= render 'form' %>
+
+    </div>
+  </div>
+</div>

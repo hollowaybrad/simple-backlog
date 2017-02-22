@@ -1,0 +1,95 @@
+
+
+<%= render 'menu' %>
+
+<div class="container" style="padding-top: 20px;">
+  
+  <ol class="breadcrumb">
+    <li><%= link_to 'Backlog', project_stories_path(@project) %></li>
+    <li class="active"><%= @story.title %></li>
+  </ol>
+  
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <span class="glyphicon glyphicon-eye-open"></span> View Story
+    </div>
+      
+    <div class="panel-body">
+
+      <% if notice %>
+        <div class="alert alert-info">
+          <span class="glyphicon glyphicon-exclamation-sign"></span> <%= notice %>
+        </div>
+      <% end %>
+
+      <%= form_for([@project, @story], html: {class: "form-horizontal"}) do |f| %>
+
+        <div class="form-group">
+          <%= f.label :title , class: 'col-sm-2 control-label'%>
+          <div class="col-sm-4 horizontal-form-margin">
+            <%= @story.title %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :description , class: 'col-sm-2 control-label'%>
+          <div class="col-sm-4 horizontal-form-margin">
+            <%= @story.description %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :points , class: 'col-sm-2 control-label'%>
+          <div class="col-sm-4 horizontal-form-margin">
+            <%= @story.points %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :user , class: 'col-sm-2 control-label'%>
+          <div class="col-sm-4 horizontal-form-margin">
+            <% if @story.user %>
+              <%= @story.user.full_name %> - <%= @story.user.email %>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :labels , class: 'col-sm-2 control-label'%>
+          <div class="col-sm-4 horizontal-form-margin">
+            <% @story.labels&.each do |label| %>
+              <p><%= label.title %></p>
+            <% end %>
+           
+          </div>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :complete , class: 'col-sm-2 control-label'%>
+          <div class="col-sm-4 horizontal-form-margin">
+            <span>
+            <% if @story.complete %>
+              Yes
+            <% else %>
+              No
+            <% end %>
+          </span>
+          </div>
+        </div>
+
+        <div class="form-group" style="padding-top:15px">
+          <div class="col-sm-10 col-md-offset-2">
+            <%= link_to edit_project_story_path(@project, @story), class: 'btn btn-default' do %> 
+              <span class="glyphicon glyphicon-wrench"></span> Edit
+            <% end %>
+
+            <%= link_to project_story_path(@project, @story), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' do%> 
+            <span class="glyphicon glyphicon-remove"></span> Delete
+            <% end %>
+          </div>
+        </div>
+        
+      <% end %>
+    </div>
+  </div>
+</div>

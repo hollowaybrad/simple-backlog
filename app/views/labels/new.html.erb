@@ -1,0 +1,33 @@
+ <%= render 'menu' %>
+
+<div class="container" style="padding-top: 20px;">   
+  <ol class="breadcrumb">
+      <li><%= link_to 'Label List', labels_path %></li>
+      <li class="active">Label</li>
+  </ol>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title"><span class="glyphicon glyphicon-plus-sign"></span> New Label</h3>
+    </div>
+    
+    <div class="panel-body">
+      <% if notice %>
+        <div class="alert alert-success">
+          <span class="glyphicon glyphicon-exclamation-sign"></span> <%=notice %>
+        </div>
+      <% end %>
+
+    <% if @label.errors.any? %>
+       <ul class="alert alert-danger">
+        <% @label.errors.full_messages.each do |message| %>
+          <li> <span class="glyphicon glyphicon-exclamation-sign"></span><%= message %></li>
+        <% end %>
+       </ul>
+    <% end %>
+
+    <%= render 'form' %>
+    
+    </div>
+  </div>      
+</div>
