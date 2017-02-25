@@ -28,7 +28,7 @@
           </button>
         </div>
          <div class="form-group">
-          <button class="btn btn-primary btn-s" data-toggle="modal" data-target="#storyModal">
+          <button id="story_modal_button" class="btn btn-primary btn-s" data-toggle="modal" data-target="#storyModal">
              <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Add with detail
           </button>
         </div>
@@ -64,4 +64,18 @@
 <!-- /container -->
 
 <%= render 'story_modal' %>
+
+<script>
+  var ready;
+  ready = function() {
+
+     $("#story_modal_button").click(function(event) {
+        event.preventDefault();
+    });
+
+  };
+
+  $(document).ready(ready);
+  $(document).on('page:load', ready);
+</script>
 
