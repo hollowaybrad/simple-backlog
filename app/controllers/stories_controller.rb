@@ -1,30 +1,27 @@
 class StoriesController < ApplicationController
   before_action :set_story, only: [:show, :edit, :update, :destroy]
 
-  # GET /stories
-  # GET /stories.json
+  # GET /project/:id/stories
   def index
     @project = Project.find(params[:project_id])
     @story = Story.new
     @stories = Story.includes(:user, :labels).where(project_id: @project.id)
   end
 
-  # GET /stories/1
-  # GET /stories/1.json
+  # GET /project/:id/stories/1
   def show
   end
 
-  # GET /stories/new
+  # GET /project/:id/stories/new
   def new
     @story = Story.new
   end
 
-  # GET /stories/1/edit
+  # GET /project/:id/stories/1/edit
   def edit
   end
 
-  # POST /stories
-  # POST /stories.json
+  # POST /project/:id/stories
   def create
     @story = Story.new(story_params)
     @story.project_id = params["project_id"]
@@ -33,7 +30,7 @@ class StoriesController < ApplicationController
       if @story.save
         format.html { redirect_to project_stories_path(@story.project_id), notice: 'Story was successfully created.' }
         format.json { render :show, status: :created, location: @story }
-        format.js {redirect_to project_stories_path(@story.project_id)}
+        format.js { redirect_to project_stories_path(@story.project_id) }
       else
         format.html { redirect_to project_stories_path(params[:project_id]), alert: "Error creating new story"}
         format.json { render json: @story.errors, status: :unprocessable_entity }
@@ -41,8 +38,7 @@ class StoriesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /stories/1
-  # PATCH/PUT /stories/1.json
+  # PATCH/PUT /project/:id/stories/1
   def update
     respond_to do |format|
       if @story.update(story_params)
@@ -55,8 +51,7 @@ class StoriesController < ApplicationController
     end
   end
 
-  # DELETE /stories/1
-  # DELETE /stories/1.json
+  # DELETE /project/:id/stories/1
   def destroy
     @story.destroy
     respond_to do |format|

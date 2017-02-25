@@ -6,7 +6,6 @@ one:
   complete: false
   project_id: 
   user_id: 
-  label: 
 
 two:
   title: MyString
@@ -14,4 +13,3 @@ two:
   complete: false
   project_id: 
   user_id: 
-  label: 
