@@ -1,8 +1,3 @@
-<style>
-  p{
-    padding: 0px 10px 0px 10px;
-  }
-</style>
 
 <%= render 'menu' %>
 
@@ -113,16 +108,11 @@
   </div>
 
 </div> <!-- /container -->
-<script>
-  var ready;
-  ready = function() {
 
-    $("#user_id").change(function() {
-        this.form.submit();
-    });
+<%= javascript_include_tag "project", "data-turbolinks-track" => true %>
 
-  };
-
-  $(document).ready(ready);
-  $(document).on('page:load', ready);
-</script>
+<style>
+  p{
+    padding: 0px 10px 0px 10px;
+  }
+</style>

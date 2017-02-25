@@ -65,17 +65,5 @@
 
 <%= render 'story_modal' %>
 
-<script>
-  var ready;
-  ready = function() {
-
-     $("#story_modal_button").click(function(event) {
-        event.preventDefault();
-    });
-
-  };
-
-  $(document).ready(ready);
-  $(document).on('page:load', ready);
-</script>
+<%= javascript_include_tag "backlog", "data-turbolinks-track" => true %>
 
