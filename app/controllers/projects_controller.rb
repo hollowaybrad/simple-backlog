@@ -13,15 +13,28 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   # GET /projects/1.json
   def show
-    @stories = Story.includes(:user).where(project_id: @project.id)
+
+    user_id = params[:user_id]
+
+    if user_id && user_id != ""
+      @stories = Story.by_project_and_user(@project.id, user_id) 
+      @user_id = user_id
+    else
+      @stories = Story.by_project(@project.id) 
+    end
     
     if @stories
       @summary = Summary.new
-      @summary.assigned_stories = @stories.find_all{|story| story.user != nil}
-      @summary.unassigned_stories = @stories.find_all{|story| story.user == nil}
+
+      complete_stories = @stories.find_all{|story| story.complete == true}
+      incomplete_stories = @stories.find_all{|story| story.complete == false}
+
+      @summary.assigned_stories = incomplete_stories.find_all{|story| story.user != nil}
+      @summary.unassigned_stories = incomplete_stories.find_all{|story| story.user == nil}
       @summary.total_points = @stories.collect{|story| story.points}.sum
       @summary.total_stories = @stories.size
-      @summary.total_complete = @stories.to_a.count{|story| story.complete == true}
+      @summary.total_complete = complete_stories.size
+      @summary.complete_stories = complete_stories
     end
     
   end

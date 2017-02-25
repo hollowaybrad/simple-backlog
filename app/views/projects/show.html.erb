@@ -15,7 +15,13 @@
   <% end %>
   
   <div>
-    <%= link_to 'Edit', edit_project_path(@project) %>
+    <div class="form-group">
+      <%= form_tag("/projects/#{@project.id}", method: :get) do -%>
+        <%= select_tag "user_id", options_from_collection_for_select(User.all, "id", "full_name", @user_id), include_blank: "All Users", class: 'form-control',  style: 'display: inline-block; width:25%;' %>
+
+        <span class="form-group, pull-right"><%= link_to 'Edit Project', edit_project_path(@project) %></span>
+      <% end -%>
+    </div>
   </div>
 
   <div class="row">
@@ -43,36 +49,56 @@
           <p>Total Completed Stories: <%= @summary.total_complete %></p>
           <p>Total Points: <%= @summary.total_points %></p>
           <p>Total Assigned Stories: <%= @summary.assigned_stories&.size %></p>
-          <p>Total Unssigned Stories: <%= @summary.unassigned_stories&.size %></p>
+          <p>Total Unassigned Stories: <%= @summary.unassigned_stories&.size %></p>
        <% else %>
         <p style="text-align: center; font-style: italic;">Nothing going on. Better hit the backlog</p>
       <% end %>
-   </div>
+    </div>
 
     <div class="col-md-6" style="min-height: 200px">
-      <h4 style="border: 1px solid; padding:5px">
-        Unassigned Stories
-        <% if @summary.unassigned_stories.any? %>
-          <span style="float: right;"><%= @summary.unassigned_stories_points %> - Points</span>
-        <% end %>
-      </h4>
+      <h4 style="border: 1px solid; padding:5px">Completed Stories</h4>
 
-      <% if @summary.unassigned_stories.any? %>
-        <% @summary.unassigned_stories.each do |story| %>
-          <p><%= story.title%> - Points: <%= story.points %> </p>
+       <% if @summary.complete_stories.any? %>
+        <% @summary.complete_stories.each do |story| %>
+          <p><%= link_to story.title, project_story_path(@project, story) %> - Points: <%= story.points %> - Assigned to: <%= story.user.full_name %></p>
         <% end %>
       <% else %>
-        <p style="text-align: center; font-style: italic;">Everything is all tasked out</p>
+        <p style="text-align: center; font-style: italic;">No completed stories!</p>
       <% end %>
     </div>
 
-     <div class="col-md-6" style="min-height: 200px">
-      <h4 style="border: 1px solid; padding:5px">Incomplete Stories</h4>
-      <p style="text-align: center; font-style: italic;">All stories are complete!</p>
-    </div>
+    <% unless @user_id %>
+      <div class="col-md-6" style="min-height: 200px">
+        <h4 style="border: 1px solid; padding:5px">
+          Unassigned Stories
+          <% if @summary.unassigned_stories.any? %>
+            <span style="float: right;"><%= @summary.unassigned_stories_points %> - Points</span>
+          <% end %>
+        </h4>
+
+        <% if @summary.unassigned_stories.any? %>
+          <% @summary.unassigned_stories.each do |story| %>
+            <p><%= story.title%> - Points: <%= story.points %> </p>
+          <% end %>
+        <% else %>
+          <p style="text-align: center; font-style: italic;">Everything is all tasked out</p>
+        <% end %>
+      </div>
+    <% end %>
 
   </div>
 
 </div> <!-- /container -->
+<script>
+  var ready;
+  ready = function() {
 
+    $("#user_id").change(function() {
+        this.form.submit();
+    });
 
+  };
+
+  $(document).ready(ready);
+  $(document).on('page:load', ready);
+</script>
