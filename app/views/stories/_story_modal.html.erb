@@ -29,8 +29,14 @@
             <label for="user">Label</label>
             <%= f.select :label_ids, Label.all.collect {|label| [ label.title, label.id ] }, { include_blank: "Select Label" }, class: 'form-control' %>
           </div>
-          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-          <button type="submit" class="btn btn-info">Save</button>
+
+          <button type="button" class="btn btn-default" data-dismiss="modal">
+            <span class="glyphicon glyphicon-remove"></span> Cancel
+          </button>
+
+          <button type="submit" class="btn btn-info">
+             <span class="glyphicon glyphicon-ok"></span> Save
+          </button>
         <% end %>
       </div>
     </div>

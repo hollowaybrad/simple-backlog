@@ -26,7 +26,10 @@
 <!-- Main jumbotron for a primary marketing message or call to action -->
 <div class="jumbotron">
    <div class="container">
-    <h1>Welcome to Simple Backlog!</h1>
+    <span style="float: right"> 
+      <%= image_tag "Screenshot.png", alt: "screenshot", width: "350", height: "200" %>
+    </span>
+    <h1>Simple Backlog</h1>
     <p>Get started by creating a new project below</p>
       <button class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">New Project 
         <span class="glyphicon glyphicon-blackboard" aria-hidden="true"></span>
@@ -48,12 +51,6 @@
             Manage  <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
           <% end %>
         </p>
-
-        <% if false %>
-          <td><%= link_to 'Edit', edit_project_path(project) %></td>
-          <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end %>
-
         </div>
     <% end %>
 
@@ -62,7 +59,7 @@
     <hr>
 
     <footer>
-      <p>&copy; 2016 FREEDOM, Inc.</p>
+      <p>&copy; 2017 Freedom, Inc.</p>
     </footer>
   </div>
 </div> <!-- /container -->

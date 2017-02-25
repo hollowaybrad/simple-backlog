@@ -23,15 +23,18 @@
           <%= f.text_field :title, class: 'form-control', placeholder: "Add new story", autofocus: true %>
         </div>
         <div class="form-group">
-          <input class="btn btn-info btn-s" type="submit" value="Add">
+           <button class="btn btn-info btn-s" type="submit">
+            <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Add
+          </button>
+        </div>
+         <div class="form-group">
+          <button class="btn btn-primary btn-s" data-toggle="modal" data-target="#storyModal">
+             <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Add with detail
+          </button>
         </div>
       <% end %>
 
-      <div class="form-group">
-          <button class="btn btn-primary btn-s" data-toggle="modal" data-target="#storyModal">
-            Add with detail
-          </button>
-        </div>
+       
 
       <table class="table table-bordered table-striped table-hover">
         <thead>
@@ -55,7 +58,7 @@
   <hr>
 
   <footer>
-    <p>&copy; Freedom 2017</p>
+    <p>&copy; 2017 Freedom, Inc.</p>
   </footer>
 </div>
 <!-- /container -->
