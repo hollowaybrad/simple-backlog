@@ -1,6 +1,6 @@
 # Simple Backlog
 
-A minimal backlong application created with Ruby, Rails and Bootstrap
+A minimal backlong application created with Ruby, Rails and Bootstrap. Uses Rails Ajax and Turbolinks for reloading features.
 
 ![Alt text](/app/assets/images/Homepage.png?raw=true "Backlog")
 
@@ -12,6 +12,16 @@ To get started create users and labels if desired and then create a new project.
 Next navigate to your Dashboard to keep track of status by all or individual users
 
 ![Alt text](/app/assets/images/Dashboard.png?raw=true "Backlog")
+
+## Future enhancements
+
+* Updated delete modals with Bootstrap styling
+* Clickable backlog table fields to edit inline. This was originally done in Angular but I have decided to rebuild with native Javascript and Rails ajax and Turbolink features
+* Multiple labels per story
+* User security and login
+* Email features such as when tasks are completed and options to opt in to different types of email
+* Make sure users cannot be deleted if they have stories assigned or any story history, maybe add disale user feature
+* About page
 
 ### Prerequisites
 
