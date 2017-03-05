@@ -20,7 +20,7 @@ Next navigate to your Dashboard to keep track of status by all or individual use
 * Multiple labels per story
 * User security and login
 * Email features such as when tasks are completed and options to opt in to different types of email
-* Make sure users cannot be deleted if they have stories assigned or any story history, maybe add disale user feature
+* Make sure users cannot be deleted if they have stories assigned or any story history, maybe add disable user feature
 * About page
 
 ### Prerequisites
