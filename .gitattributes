@@ -1,2 +1,2 @@
-special-vendored-path/* linguist-vendored
-app/assets/javascripts/bootstrap.js linguist-vendored=false
+app/assets/javascripts/* linguist-vendored
+bootstrap.js linguist-vendored=false
