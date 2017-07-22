@@ -1,4 +1,3 @@
 special-vendored-path/* linguist-vendored
-bootstrap.js linguist-vendored=true
 *.js linguist-generated=true
-app/assets/javascripts/bootstrap.js linguist-language=Ruby
+*.css linguist-generated=true
