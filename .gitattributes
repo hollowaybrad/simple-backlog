@@ -1,2 +1,3 @@
 special-vendored-path/* linguist-vendored
 bootstrap.js linguist-vendored=true
+bootstrap.js linguist-generated=true
