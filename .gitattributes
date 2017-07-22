@@ -1,1 +1,2 @@
-app/assets/javascripts/bootstrap.js linguist-vendored=true
+app/assets/javascripts/* linguist-vendored
+bootstrap.js linguist-vendored=true
