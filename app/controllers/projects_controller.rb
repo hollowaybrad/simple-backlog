@@ -13,16 +13,15 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   # GET /projects/1.json
   def show
-
     user_id = params[:user_id]
 
-    if user_id && user_id != ""
-      @stories = Story.by_project_and_user(@project.id, user_id) 
+    unless user_id.blank?
+      @stories = Story.by_project_and_user(@project.id, user_id)
       @user_id = user_id
     else
-      @stories = Story.by_project(@project.id) 
+      @stories = Story.by_project(@project.id)
     end
-    
+
     if @stories
       @summary = Summary.new
 
@@ -36,7 +35,7 @@ class ProjectsController < ApplicationController
       @summary.total_complete = complete_stories.size
       @summary.complete_stories = complete_stories
     end
-    
+
   end
 
   # GET /projects/new

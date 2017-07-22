@@ -1,5 +1,6 @@
 class Summary
-  attr_accessor :total_points, :assigned_stories, :unassigned_stories, :total_stories, :total_complete, :complete_stories
+  attr_accessor :total_points, :assigned_stories, :unassigned_stories,
+    :total_stories, :total_complete, :complete_stories
 
   def assigned_stories_points
     assigned_stories.collect{|story| story.points}.sum

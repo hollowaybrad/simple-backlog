@@ -1,0 +1,2 @@
+class BacklogMailer < ApplicationMailer
+end
