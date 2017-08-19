@@ -16,7 +16,7 @@ Next navigate to your Dashboard to keep track of status by all or individual use
 ### Prerequisites
 
 ```
-Created with Ruby 2.3.1, Rails 4.2.7.1 and tested with Google Chrome
+Created with Ruby 2.3.3, Rails 4.2.7.1 and tested with Google Chrome
 ```
 
 ## Built With
