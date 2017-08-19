@@ -8,22 +8,22 @@
       <span class="glyphicon glyphicon-exclamation-sign"></span> <%=notice %>
     </div>
   <% end %>
-  
+
   <div>
     <div class="form-group">
       <%= form_tag("/projects/#{@project.id}", method: :get) do -%>
         <%= select_tag "user_id", options_from_collection_for_select(User.all, "id", "full_name", @user_id), include_blank: "All Users", class: 'form-control',  style: 'display: inline-block; width:25%;' %>
 
         <span class="form-group, pull-right" style="padding-left: 5px;">
-          <%= link_to @project, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' do %> 
+          <%= link_to @project, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' do %>
             <span class="glyphicon glyphicon-remove"></span> Delete Project
           <% end %>
         </span>
         <span class="form-group, pull-right">
-          <%= link_to edit_project_path(@project), class: 'btn btn-default' do %> 
+          <%= link_to edit_project_path(@project), class: 'btn btn-default' do %>
             <span class="glyphicon glyphicon-wrench"></span> Edit Project
           <% end %>
-       
+
         </span>
 
       <% end %>
@@ -33,10 +33,10 @@
   <div class="row">
     <div class="col-md-6" style="min-height: 200px">
       <h4 style="border: 1px solid; padding:5px">
-        Assigned Stories 
+        Assigned Stories
         <% if @summary.assigned_stories.any? %>
               <span style="float: right;">
-                <span class="label label-default"><%= @summary.assigned_stories_points %></span> 
+                <span class="label label-default"><%= @summary.assigned_stories_points %></span>
                 - Points
               </span>
         <% end %>
@@ -45,8 +45,8 @@
       <% if @summary.assigned_stories.any? %>
         <% @summary.assigned_stories.each do |story| %>
           <p>
-            <%= link_to story.title, project_story_path(@project, story) %> - Points: 
-            <span class="badge"><%= story.points %></span> - Assigned to: 
+            <%= link_to story.title, project_story_path(@project, story) %> - Points:
+            <span class="badge"><%= story.points %></span> - Assigned to:
             <%= story.user.full_name %>
           </p>
         <% end %>
@@ -59,10 +59,10 @@
       <h4 style="border: 1px solid; padding:5px">Summary</h4>
        <% if @summary.total_stories > 0 %>
           <p>Total Stories:  <span class="badge"><%= @summary.total_stories %></span></p>
-          <p>Total Completed Stories:  <span class="badge"><%= @summary.total_complete %></span></p>
+          <p>Total Completed Stories:  <span class="badge"><%= @summary.complete_stories.size %></span></p>
           <p>Total Points:  <span class="badge"><%= @summary.total_points %></span></p>
-          <p>Total Assigned Stories: <span class="badge"><%= @summary.assigned_stories&.size %></span></p>
-          <p>Total Unassigned Stories: <span class="badge"><%= @summary.unassigned_stories&.size %></span></p>
+          <p>Total Assigned Stories: <span class="badge"><%= @summary.assigned_stories.size %></span></p>
+          <p>Total Unassigned Stories: <span class="badge"><%= @summary.unassigned_stories.size %></span></p>
        <% else %>
         <p style="text-align: center; font-style: italic;">Nothing going on. Better hit the backlog</p>
       <% end %>
@@ -73,8 +73,8 @@
 
        <% if @summary.complete_stories.any? %>
         <% @summary.complete_stories.each do |story| %>
-          <p><%= link_to story.title, project_story_path(@project, story) %> - Points: 
-            <span class="badge"><%= story.points %></span> - Assigned to:  
+          <p><%= link_to story.title, project_story_path(@project, story) %> - Points:
+            <span class="badge"><%= story.points %></span> - Assigned to:
             <%= story.user.full_name %>
            </p>
         <% end %>
@@ -89,7 +89,7 @@
           Unassigned Stories
           <% if @summary.unassigned_stories.any? %>
             <span style="float: right;">
-                <span class="label label-default"><%= @summary.unassigned_stories_points %></span> 
+                <span class="label label-default"><%= @summary.unassigned_stories_points %></span>
                 - Points
             </span>
           <% end %>
