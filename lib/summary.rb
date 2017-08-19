@@ -1,12 +1,22 @@
 class Summary
-  attr_accessor :total_points, :assigned_stories, :unassigned_stories,
-    :total_stories, :total_complete, :complete_stories
+  attr_reader :total_points, :assigned_stories, :unassigned_stories,
+    :total_stories, :total_complete, :complete_stories, :assigned_stories_points,
+    :unassigned_stories_points
+    
+  def initialize(stories)
+    @complete_stories = stories.find_all{|story| story.complete == true}
+    incomplete_stories = stories.find_all{|story| story.complete == false}
 
-  def assigned_stories_points
-    assigned_stories.collect{|story| story.points}.sum
+    @assigned_stories = incomplete_stories.find_all{|story| story.user != nil}
+    @assigned_stories_points = @assigned_stories.collect{|story| story.points}.sum
+
+    @unassigned_stories = incomplete_stories.find_all{|story| story.user == nil}
+    @unassigned_stories_points = @unassigned_stories.collect{|story| story.points}.sum
+
+    @total_points = stories.collect{|story| story.points}.sum
+    @total_stories = stories.size
+
+    @total_complete = @complete_stories.size
   end
 
-  def unassigned_stories_points
-    unassigned_stories.collect{|story| story.points}.sum
-  end
 end
