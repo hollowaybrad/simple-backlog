@@ -17,10 +17,7 @@ class ProjectsController < ApplicationController
       @stories = Story.by_project(@project.id)
     end
 
-    if @stories
-      @summary = Summary.new(@stories)
-    end
-
+    @summary = Summary.new(@stories)
   end
 
   def new
