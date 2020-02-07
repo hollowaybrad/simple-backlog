@@ -1,6 +1,6 @@
 # Simple Backlog
 
-A minimal backlong application created with Ruby, Rails and Bootstrap. Uses Rails Ajax and Turbolinks for reloading features.
+A minimal backlog application created with Ruby, Rails and Bootstrap. Uses Rails Ajax and Turbolinks for reloading features.
 
 ![Alt text](/app/assets/images/Homepage.png?raw=true "Backlog")
 
